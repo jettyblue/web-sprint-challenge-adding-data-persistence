@@ -28,6 +28,7 @@
     "supertest": "6.2.2"
   },
   "dependencies": {
+    "sqlite3": "^5.0.2",
     "vscode-sqlite3": "^4.0.11"
   }
 }
