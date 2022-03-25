@@ -6,7 +6,7 @@ const { validateProject } = require('./middleware');
 
 router.get('/', async (req, res, next) => {
     try {
-        const projects = await Project.getAllProjects();
+        const projects = await Project.getAll();
         res.json(projects);
     } catch(err) {
         next(err);
@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', validateProject, async (req, res, next) => {
     try {
-        const newProject = await Project.createProject(req.body);
+        const newProject = await Project.create(req.body);
         res.status(201).json(newProject);
     } catch(err) {
         next(err);
