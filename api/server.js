@@ -11,6 +11,10 @@ server.use('/api/projects', projectRouter);
 server.use('/api/resources', resourceRouter);
 server.use('/api/tasks', taskRouter);
 
+server.get('/', (req, res, next) => {
+    res.send('server is up and running');
+})
+
 server.use((err, req, res) => {
     res.status(err.status || 500).json({
         message: err.message,

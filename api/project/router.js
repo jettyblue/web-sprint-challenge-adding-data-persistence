@@ -2,6 +2,8 @@
 const router = require('express').Router();
 const Project = require('./model');
 
+const { validateProject } = require('./middleware');
+
 router.get('/', async (req, res, next) => {
     try {
         const projects = await Project.getAllProjects();
@@ -11,7 +13,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', validateProject, async (req, res, next) => {
     try {
         const newProject = await Project.createProject(req.body);
         res.status(201).json(newProject);
