@@ -1,7 +1,7 @@
 // build your `Task` model here
 const db = require('../../data/dbConfig');
 
-async function getAll() {
+async function getAllTasks() {
     const tasks = await db('tasks as t')
         .select(
             't.task_id',
@@ -19,7 +19,7 @@ async function getAll() {
     return tasks;
 }
 
-async function getById(id) {
+async function getTaskById(id) {
     const [task] = await db('tasks')
         .where('task_id', id);
 
@@ -27,12 +27,12 @@ async function getById(id) {
     return task;
 }
 
-async function create(task) {
+async function createTask(task) {
     const [id] = await db('tasks')
         .insert(task);
 
-    const created = await getById(id);
+    const created = await getTaskById(id);
     return created;
 }
 
-module.exports = { getAll, getById, create };
+module.exports = { getAllTasks, getTaskById, createTask };

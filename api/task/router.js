@@ -5,7 +5,7 @@ const { checkProjectIdExists, validateTask } = require('./middleware');
 
 router.get('/', async (req, res, next) => {
     try {
-        const tasks = await Task.getAll();
+        const tasks = await Task.getAllTasks();
         res.json(tasks);
     } catch(err) {
         next(err);
@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', validateTask, checkProjectIdExists, async (req, res, next) => {
     try {
-        const newTask = await Task.create(req.body);
+        const newTask = await Task.createTask(req.body);
         res.status(201).json(newTask);
     } catch(err) {
         next(err);
